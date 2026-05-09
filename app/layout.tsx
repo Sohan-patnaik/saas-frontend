@@ -23,7 +23,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://howyouthink.ai"),
+  metadataBase: new URL("https://saas-frontend-rho-five.vercel.app"),
 
   title: {
     default: "HowYouThink",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     title: "HowYouThink – AI Chatbots for Websites",
     description:
       "Create, train, and embed AI chatbots into your website without coding.",
-    url: "https://howyouthink.ai",
+    url: "https://saas-frontend-rho-five.vercel.app",
     siteName: "HowYouThink",
     type: "website",
 
