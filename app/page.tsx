@@ -1,65 +1,87 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import React from "react";
+import { useUser } from "@clerk/nextjs";
+import Form from "./form/page";
+import Navbar from "./components/Navbar";
+
+export default function Example() {
+  const { isLoaded, user } = useUser();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="bg-white">
+      <div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
+        <div className="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+          <svg
+            viewBox="0 0 1024 1024"
+            aria-hidden="true"
+            className="absolute top-1/2 left-1/2 -z-10 size-256 -translate-y-1/2 mask-[radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+            <circle
+              r={512}
+              cx={512}
+              cy={512}
+              fill="url(#759c1415-0410-454c-8f7c-9a820de03641)"
+              fillOpacity="0.7"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <defs>
+              <radialGradient id="759c1415-0410-454c-8f7c-9a820de03641">
+                <stop stopColor="#7775D6" />
+                <stop offset={1} stopColor="#E935C1" />
+              </radialGradient>
+            </defs>
+          </svg>
+
+          {/* Text Section */}
+          <div className="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
+            <h2 className="text-3xl font-semibold tracking-tight text-balance text-white sm:text-4xl">
+              HowYouThink — AI SAAS Platform
+            </h2>
+            <p className="mt-6 text-lg/8 text-pretty text-gray-300">
+              HowYouThink lets you create and train your own AI chatbot. Upload
+              your FAQs or documents, customise the tone, and embed it anywhere.
+              A smarter way to engage your audience.
+            </p>
+            <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
+              {!isLoaded ? null : user ? (
+                // Dashboard button for logged-in users
+                <a
+                  href="/dashboard"
+                  className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                >
+                  Go to Dashboard
+                </a>
+              ) : (
+                // Sign-in button for guests
+                <a
+                  href="https://possible-penguin-65.accounts.dev/sign-in?redirect_url=http%3A%2F%2Flocalhost%3A3000%2F"
+                  className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                >
+                  Get started
+                </a>
+              )}
+              <a
+                href="#"
+                className="text-sm/6 font-semibold text-white hover:text-gray-100"
+              >
+                Learn more
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Image Section */}
+          <div className="relative mt-16 h-80 lg:mt-8">
+            <img
+              alt="HowYouThink app screenshot"
+              src="https://imageio.forbes.com/specials-images/imageserve/5e4a3210a854780006b18efa/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds"
+              width={1824}
+              height={1080}
+              className="absolute top-0 left-0 w-228 max-w-none rounded-md bg-white/5 ring-1 ring-white/10"
+            />
+          </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
