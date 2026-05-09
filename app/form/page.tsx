@@ -12,7 +12,7 @@ const router = useRouter();
  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault() 
     try {
-      const res = await axios.post('http://127.0.0.1:8000/set_profile', {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/set_profile`, {
         name,
         age,
         preference

@@ -20,7 +20,7 @@ export default function ChatUI({ botId }: ChatUIProps) {
   const [loading, setLoading] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const embedCode = `<script src="http://localhost:8000/widget.js" bot-id="${botId}"></script>`;
+  const embedCode = `<script src="${process.env.NEXT_PUBLIC_API_URL}/widget.js" bot-id="${botId}"></script>`;
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
